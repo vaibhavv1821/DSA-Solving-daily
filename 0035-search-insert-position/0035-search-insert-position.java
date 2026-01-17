@@ -6,7 +6,7 @@ class Solution {
         // int i=0;
         
         while (low <= high) {
-        int mid = low +(high-low)/2;
+        int mid = (low +high)/2;
             if (arr[mid] == target) {
                 return mid;
             }
