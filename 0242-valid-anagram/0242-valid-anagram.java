@@ -1,41 +1,39 @@
+import java.util.HashMap;
+
 class Solution {
 
     public boolean isAnagram(String s, String t) {
 
-        // If lengths are different, cannot be anagram
+        // Step 1: Length check
         if (s.length() != t.length()) {
             return false;
         }
 
-        // Convert t to StringBuilder so we can delete characters
-        StringBuilder sb = new StringBuilder(t);
+        // Step 2: Create frequency map
+        HashMap<Character, Integer> map = new HashMap<>();
 
-        // Go through each character of s
-        for (int i = 0; i < s.length(); i++) {
+        // Step 3: Count characters in s
+        for (char ch : s.toCharArray()) {
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+        }
 
-            char ch = s.charAt(i);
+        // Step 4: Reduce count using t
+        for (char ch : t.toCharArray()) {
 
-            boolean found = false;
-
-            // Search this character in sb
-            for (int j = 0; j < sb.length(); j++) {
-
-                if (sb.charAt(j) == ch) {
-
-                    // If found, remove it
-                    sb.deleteCharAt(j);
-                    found = true;
-                    break;
-                }
+            // If character not present → not anagram
+            if (!map.containsKey(ch)) {
+                return false;
             }
 
-            // If character not found in t
-            if (!found) {
-                return false;
+            map.put(ch, map.get(ch) - 1);
+
+            // Remove if count becomes 0
+            if (map.get(ch) == 0) {
+                map.remove(ch);
             }
         }
 
-        // If all characters matched
-        return sb.length() == 0;
+        // Step 5: If map empty → anagram
+        return map.isEmpty();
     }
 }
