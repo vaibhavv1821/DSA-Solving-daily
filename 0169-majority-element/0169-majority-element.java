@@ -2,24 +2,22 @@ import java.util.*;
 
 class Solution {
 
-    public int majorityElement(int[] nums) {
+    public int majorityElement(int[] arr) {
 
-        HashMap<Integer, Integer> map = new HashMap<>();
+        int count =1;
+        int output = arr[0];
 
-        // Count frequency
-        for (int i = 0; i < nums.length; i++) {
-
-            map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
-        }
-
-        // Find majority
-        for (int key : map.keySet()) {
-
-            if (map.get(key) > nums.length / 2) {
-                return key;
+        for (int i=1; i<arr.length ; i++) {
+            if(count <= 0){
+                // count = 0;
+                output = arr[i];
+            }
+            if(arr[i] == output){
+                count++;
+            }else{
+                count--;
             }
         }
-
-        return -1; 
+        return output;
     }
 }
