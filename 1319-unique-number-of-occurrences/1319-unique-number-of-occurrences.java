@@ -1,8 +1,5 @@
-import java.util.*;
-
 class Solution {
     public boolean uniqueOccurrences(int[] arr) {
-
         // Step 1: Count frequency
         HashMap<Integer, Integer> map = new HashMap<>();
 
