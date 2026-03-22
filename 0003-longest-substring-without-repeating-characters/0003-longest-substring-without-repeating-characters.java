@@ -3,23 +3,23 @@ import java.util.HashSet;
 class Solution {
     public int lengthOfLongestSubstring(String s) {
 
+        int start = 0, end = 0;
+        int maxlen = 0;
+
         HashSet<Character> set = new HashSet<>();
 
-        int a = 0;
-        int max = 0;
+        while (end < s.length()) {
 
-        for (int b = 0; b < s.length(); b++) {
-
-            while (set.contains(s.charAt(b))) {
-                set.remove(s.charAt(a));
-                a++;
+            if (!set.contains(s.charAt(end))) {
+                set.add(s.charAt(end));
+                maxlen = Math.max(maxlen, end - start + 1);
+                end++;
+            } else {
+                set.remove(s.charAt(start));
+                start++;
             }
-
-            set.add(s.charAt(b));
-
-            max = Math.max(max, b - a + 1);
         }
 
-        return max;
+        return maxlen;
     }
 }
