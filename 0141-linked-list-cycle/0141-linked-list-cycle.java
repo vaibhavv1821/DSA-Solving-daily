@@ -11,20 +11,24 @@
  */
 public class Solution {
     public boolean hasCycle(ListNode head) {
-        HashSet<ListNode> visited = new HashSet<>();
+        if (head == null) return false;
 
-        ListNode current = head;
+        // Initialize two pointers
+        ListNode slow = head;
+        ListNode fast = head;
 
-        while (current != null) {
-            if (visited.contains(current)) {
+        // Traverse the list
+        while (fast != null && fast.next != null) {
+            slow = slow.next;          // move 1 step
+            fast = fast.next.next;     // move 2 steps
+
+            // Cycle detected
+            if (slow == fast) {
                 return true;
             }
-
-            visited.add(current);
-
-            current = current.next;
         }
 
+        // No cycle
         return false;
         
     }
