@@ -1,6 +1,6 @@
 class Solution {
     public int binaryGap(int n) {
-                int lastPos = -1;
+        int lastPos = -1;
         int maxDist = 0;
         int pos = 0;
         
