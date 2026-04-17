@@ -13,7 +13,7 @@ class Solution {
                 prev = nums[i];
             }
 
-            if (distinctCount == 3) {
+            if (distinctCount >= 3) {
                 return nums[i];
             }
         }
