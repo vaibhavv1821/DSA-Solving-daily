@@ -4,13 +4,18 @@ class Solution {
     }
 
     private String build(String str) {
-        StringBuilder sb = new StringBuilder();
+        Stack<Character> stack = new Stack<>();
         for (char c : str.toCharArray()) {
             if (c != '#') {
-                sb.append(c);
-            } else if (sb.length() > 0) {
-                sb.deleteCharAt(sb.length() - 1);
+                stack.push(c);   // push character
+            } else if (!stack.isEmpty()) {
+                stack.pop();     // pop character
             }
+        }
+        // convert stack to string
+        StringBuilder sb = new StringBuilder();
+        for (char c : stack) {
+            sb.append(c);
         }
         return sb.toString();
     }
