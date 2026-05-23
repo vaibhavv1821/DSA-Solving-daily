@@ -1,16 +1,21 @@
 class Solution {
     public boolean check(int[] nums) {
 
-        int n = nums.length;
-        int count = 0;
+        int drops = 0;
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < nums.length - 1; i++) {
 
-            if (nums[i] > nums[(i + 1) % n]) {
-                count++;
+            // check if order breaks
+            if (nums[i] > nums[i + 1]) {
+                drops++;
             }
         }
 
-        return count <= 1;
+        // check last and first separately
+        if (nums[nums.length - 1] > nums[0]) {
+            drops++;
+        }
+
+        return drops <= 1;
     }
 }
