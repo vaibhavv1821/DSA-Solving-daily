@@ -1,11 +1,17 @@
+import java.util.*;
+
 class Solution {
 
     public String reversePrefix(String word, char ch) {
 
+        Stack<Character> stack = new Stack<>();
+
         int index = -1;
 
-        // find first occurrence
+        // Find first occurrence and push into stack
         for(int i = 0; i < word.length(); i++) {
+
+            stack.push(word.charAt(i));
 
             if(word.charAt(i) == ch) {
                 index = i;
@@ -13,27 +19,23 @@ class Solution {
             }
         }
 
-        // if character not found
+        // If character not found
         if(index == -1) {
             return word;
         }
 
-        char[] arr = word.toCharArray();
+        StringBuilder ans = new StringBuilder();
 
-        int left = 0;
-        int right = index;
-
-        // reverse
-        while(left < right) {
-
-            char temp = arr[left];
-            arr[left] = arr[right];
-            arr[right] = temp;
-
-            left++;
-            right--;
+        // Pop from stack -> reversed prefix
+        while(!stack.isEmpty()) {
+            ans.append(stack.pop());
         }
 
-        return new String(arr);
+        // Add remaining characters
+        for(int i = index + 1; i < word.length(); i++) {
+            ans.append(word.charAt(i));
+        }
+
+        return ans.toString();
     }
 }
