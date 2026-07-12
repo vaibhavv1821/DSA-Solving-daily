@@ -1,26 +1,37 @@
+
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        
-        ListNode dummy = new ListNode(0); // dummy head
-        ListNode current = dummy;
-        int carry = 0;
+    ListNode result = new ListNode(0);
+    ListNode ptr = result;
 
-        while (l1 != null || l2 != null || carry != 0) {
-            
-            int val1 = (l1 != null) ? l1.val : 0;
-            int val2 = (l2 != null) ? l2.val : 0;
+    int carry = 0;    // Set default carry
 
-            int sum = val1 + val2 + carry;
-            int digit = sum % 10;
-            carry = sum / 10;
+    while (l1 != null || l2 != null) {
 
-            current.next = new ListNode(digit);
-            current = current.next;
+      int sum = 0 + carry;    // Initialize sum
 
-            if (l1 != null) l1 = l1.next;
-            if (l2 != null) l2 = l2.next;
-        }
+      if (l1 != null) {    // Use number from first list
+        sum += l1.val;
+        l1 = l1.next;
+      }
 
-        return dummy.next;
+      if (l2 != null) {    // Use number from 2nd list
+        sum += l2.val;
+        l2 = l2.next;
+      }
+
+      carry = sum / 10;    // Get sum and carry
+      sum = sum % 10;
+      ptr.next = new ListNode(sum);
+      ptr = ptr.next;
+    }
+
+    if (carry == 1) ptr.next = new ListNode(1);
+
+    return result.next;
     }
 }
+
+// Synced seamlessly with LeetHub Pro
+// Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
+// Get it here: https://chromewebstore.google.com/detail/bcilpkkbokcopmabingnndookdogmbna
