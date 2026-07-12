@@ -8,7 +8,7 @@ class Solution {
 
     while (l1 != null || l2 != null) {
 
-      int sum = 0 + carry;    // Initialize sum
+      int sum = carry;    // Initialize sum
 
       if (l1 != null) {    // Use number from first list
         sum += l1.val;
