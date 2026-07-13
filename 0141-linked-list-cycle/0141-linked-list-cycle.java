@@ -1,35 +1,19 @@
-/**
- * Definition for singly-linked list.
- * class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
- */
 public class Solution {
     public boolean hasCycle(ListNode head) {
-        if (head == null) return false;
-
-        // Initialize two pointers
         ListNode slow = head;
         ListNode fast = head;
 
-        // Traverse the list
         while (fast != null && fast.next != null) {
-            slow = slow.next;          // move 1 step
-            fast = fast.next.next;     // move 2 steps
-
-            // Cycle detected
+            slow = slow.next;
+            fast = fast.next.next;
             if (slow == fast) {
                 return true;
             }
         }
-
-        // No cycle
         return false;
-        
     }
 }
+
+// Synced seamlessly with LeetHub Pro
+// Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
+// Get it here: https://chromewebstore.google.com/detail/bcilpkkbokcopmabingnndookdogmbna
