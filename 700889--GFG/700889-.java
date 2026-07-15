@@ -1,15 +1,19 @@
 class Solution {
     public void reverseArray(int arr[]) {
-        int p=0;
-        int i=arr.length-1;
-        
-        while(p < i){
-            int temp = arr[p];
-            arr[p]=arr[i];
-            arr[i]=temp;
-        p++;
-        i--;
+        reverseHelper(arr, 0, arr.length - 1);
+    }
+    
+    private void reverseHelper(int arr[], int left, int right) {
+                if (left >= right) {
+            return;
         }
+        
+               int temp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = temp;
+        
+        // Recursive call: move the pointers inward
+        reverseHelper(arr, left + 1, right - 1);
     }
 }
 
