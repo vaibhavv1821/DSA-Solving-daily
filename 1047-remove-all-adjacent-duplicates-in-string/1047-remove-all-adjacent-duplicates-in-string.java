@@ -1,23 +1,15 @@
-import java.util.Stack;
-
 class Solution {
     public String removeDuplicates(String s) {
-        Stack<Character> stack = new Stack<>();
+        StringBuilder stack = new StringBuilder();
 
-        for (char c : s.toCharArray()) {
-            if (!stack.isEmpty() && stack.peek() == c) {
-                stack.pop(); // remove duplicate
-            } else {
-                stack.push(c);
+        for (char ch : s.toCharArray()) {
+            if (stack.length() > 0 && stack.charAt(stack.length()-1) == ch){
+                stack.deleteCharAt(stack.length()-1);
+            }
+            else {
+                stack.append(ch);
             }
         }
-
-        // Build result from stack
-        StringBuilder result = new StringBuilder();
-        for (char c : stack) {
-            result.append(c);
-        }
-
-        return result.toString();
+            return stack.toString();
     }
 }
