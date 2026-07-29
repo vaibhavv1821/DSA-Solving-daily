@@ -1,24 +1,23 @@
-
-
 class Solution {
-    public ArrayList<Integer> getMinMax(int[] arr) {
-
-        int min = arr[0];   // assume first element
-        int max = arr[0];
-
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i] < min) {
-                min = arr[i];
-            }
-            if (arr[i] > max) {
-                max = arr[i];
-            }
-        }
-
-        ArrayList<Integer> result = new ArrayList<>();
-        result.add(min);
-        result.add(max);
-
-        return result;
-    }
+	public ArrayList<Integer> getMinMax(int[] arr) {
+		
+		int max = Integer.MIN_VALUE;
+		int min = Integer.MAX_VALUE;
+		
+		ArrayList list = new ArrayList<>();
+		
+		for (int i = 0; i<arr.length; i++) {
+			if (min>arr[i]) {
+				min = arr[i];
+				
+			}
+			
+			if (max<arr[i]){
+			max = arr[i];
+			}
+		}
+		list.add(min);
+		list.add(max);
+		return list;
+	}
 }
