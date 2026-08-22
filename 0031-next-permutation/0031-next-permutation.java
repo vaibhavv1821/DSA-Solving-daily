@@ -1,37 +1,36 @@
 class Solution {
-    public void nextPermutation(int[] nums) {
-
+    public void nextPermutation(int[] arr) {
         int pivot = -1;
-
-        // Find pivot
-        for (int i = nums.length - 2; i >= 0; i--) {
-            if (nums[i] < nums[i + 1]) {
+        
+        // Step 1: Find pivot
+        for (int i = arr.length - 2; i >= 0; i--) {
+            if (arr[i] < arr[i + 1]) {
                 pivot = i;
                 break;
             }
         }
-
-        // Find next greater element and swap
+        
+        // Step 2: If pivot found, swap with next greater element
         if (pivot != -1) {
-            for (int i = nums.length - 1; i > pivot; i--) {
-                if (nums[i] > nums[pivot]) {
-                    int temp = nums[i];
-                    nums[i] = nums[pivot];
-                    nums[pivot] = temp;
+            for (int i = arr.length - 1; i > pivot; i--) {
+                if (arr[i] > arr[pivot]) {
+                    int temp = arr[i];
+                    arr[i] = arr[pivot];
+                    arr[pivot] = temp;
                     break;
                 }
             }
         }
-
-        // Reverse the remaining array
-        int left = pivot + 1;
-        int right = nums.length - 1;
-
+        
+        // Step 3: Reverse suffix (important!)
+        reverse(arr, pivot + 1, arr.length - 1);
+    }
+    
+    private void reverse(int[] arr, int left, int right) {
         while (left < right) {
-            int temp = nums[left];
-            nums[left] = nums[right];
-            nums[right] = temp;
-
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
             left++;
             right--;
         }
