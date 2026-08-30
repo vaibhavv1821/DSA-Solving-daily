@@ -1,33 +1,48 @@
 class Solution {
-    public List<List<Integer>> threeSum(int[] arr) {
-        if (arr == null || arr.length < 3) return new ArrayList<>();
+    public List<List<Integer>> threeSum(int[] nums) {
 
-    // Sort the elements
-    Arrays.sort(arr);
-    Set<List<Integer>> result = new HashSet<>();
+        List<List<Integer>> list = new ArrayList<>();
 
-    // Now fix the first element and find the other two elements
-    for (int i = 0; i < arr.length - 2; i++)
-    {
-      // Find other two elements using Two Sum approach
-      int left = i + 1;
-      int right = arr.length - 1;
+        Arrays.sort(nums);
 
-      while (left < right) {
-        int sum = arr[i] + arr[left] + arr[right];
+        for (int i = 0; i < nums.length - 2; i++) {
 
-        if (sum == 0) {
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
 
-          // Add the set, and move to find other triplets
-          result.add(Arrays.asList(arr[i], arr[left], arr[right]));
-          left++;
-          right--;
-        } else if (sum < 0)
-          left++;
-        else
-          right--;
-      }
-    }
-    return new ArrayList<>(result);
+            int left = i + 1;
+            int right = nums.length - 1;
+
+            while (left < right) {
+
+                int sum = nums[i] + nums[left] + nums[right];
+
+                if (sum == 0) {
+                    list.add(Arrays.asList(nums[i], nums[left], nums[right]));
+
+                    left++;
+                    right--;
+
+                    while (left < right && nums[left] == nums[left - 1]) {
+                        left++;
+                    }
+
+                    while (left < right && nums[right] == nums[right + 1]) {
+                        right--;
+                    }
+                }
+
+                else if (sum < 0) {
+                    left++;
+                }
+
+                else {
+                    right--;
+                }
+            }
+        }
+
+        return list;
     }
 }
