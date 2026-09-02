@@ -5,17 +5,17 @@ class Solution {
         s = s.toLowerCase().replaceAll("[^a-z0-9]", "");
         t = t.toLowerCase().replaceAll("[^a-z0-9]", "");
 
-        HashMap<Character, Integer> map = new HashMap<>();
+        if (s.length() != t.length()) return false;
+
+        HashMap<Character, Integer> mapS = new HashMap<>();
+        HashMap<Character, Integer> mapT = new HashMap<>();
 
         for (char c : s.toCharArray())
-            map.put(c, map.getOrDefault(c, 0) + 1);
+            mapS.put(c, mapS.getOrDefault(c, 0) + 1);
 
         for (char d : t.toCharArray())
-            map.put(d, map.getOrDefault(d, 0) - 1);
+            mapT.put(d, mapT.getOrDefault(d, 0) + 1);
 
-        for (int count : map.values())
-            if (count != 0) return false;
-
-        return true;
+        return mapS.equals(mapT);
     }
 }
