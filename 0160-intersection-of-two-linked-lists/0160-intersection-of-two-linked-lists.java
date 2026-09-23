@@ -1,25 +1,20 @@
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        ListNode one = headA;
-        ListNode two = headB;
+        ListNode first = headA;
+        ListNode sec = headB;
 
-            while (one != two) {
-                if(one == null) {
-            one = headB;
-            } else {
-                one = one.next;
+        HashSet <ListNode> set =new HashSet<>();
+
+        while(first!=null){
+            set.add(first);
+            first = first.next;
+        } 
+        while(sec != null){
+            if(set.contains(sec)){
+                return sec;
             }
-            if (two == null) {
-                two = headA;
-                } else {
-                    two = two.next;
+            sec = sec.next;
         }
-}
-                return one;
-        }
+        return null;
     }
-
-
-// Synced seamlessly with LeetHub Pro
-// Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
-// Get it here: https://chromewebstore.google.com/detail/bcilpkkbokcopmabingnndookdogmbna
+}
